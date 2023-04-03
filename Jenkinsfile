@@ -11,7 +11,7 @@ pipeline {
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.93.23:8081"
-        NEXUS_REPOSITORY = "central"
+        NEXUS_REPOSITORY = "release"
 	NEXUS_REPOGRP_ID    = "group"
         NEXUS_CREDENTIAL_ID = "nexuslogin"
         ARTVERSION = "${env.BUILD_ID}"
