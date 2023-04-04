@@ -14,7 +14,7 @@ pipeline {
             NEXUSIP = '172.31.93.23'
             NEXUSPORT = '8081'
             NEXUS_GRP_REPO = 'group'
-        NEXUS_LOGIN = 'nexuslogin
+        NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
     }
