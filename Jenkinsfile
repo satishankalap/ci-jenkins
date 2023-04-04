@@ -10,14 +10,14 @@ pipeline {
     }
     
     environment {
-        SNAP_REPO = 'snapshot'
-		NEXUS_USER = 'admin'
-		NEXUS_PASS = 'admin'
-		RELEASE_REPO = 'release'
-		CENTRAL_REPO = 'central'
-		NEXUSIP = '172.31.93.23'
-		NEXUSPORT = '8081'
-		NEXUS_GRP_REPO = 'group'
+       SNAP_REPO = 'snapshot' 
+            NEXUS_USER = 'admin'
+            NEXUS_PASS = 'admin'
+            RELEASE_REPO = 'release'
+            CENTRAL_REPO = 'central'
+            NEXUSIP = '172.31.93.23'
+            NEXUSPORT = '8081'
+            NEXUS_GRP_REPO = 'group'
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = 'sonarserver'
         SONARSCANNER = 'sonarscanner'
@@ -56,7 +56,7 @@ pipeline {
             steps {
                withSonarQubeEnv("${SONARSERVER}") {
                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
-                   -Dsonar.projectName=vprofile \
+                   -Dsonar.projectName=Auto-CI \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
                    -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
@@ -88,9 +88,9 @@ pipeline {
                   repository: "${RELEASE_REPO}",
                   credentialsId: "${NEXUS_LOGIN}",
                   artifacts: [
-                    [artifactId: 'vproapp',
+                    [artifactId: 'Auto-CI-webapp',
                      classifier: '',
-                     file: 'target/vprofile-v2.war',
+                     file: 'target/Auto-CI-v2.war',
                      type: 'war']
                   ]
                 )
