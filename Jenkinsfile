@@ -6,7 +6,7 @@ pipeline {
     }
     
     environment {
-        SNAP_REPO = 'snapshot' 
+       SNAP_REPO = 'snapshot' 
             NEXUS_USER = 'admin'
             NEXUS_PASS = 'admin'
             RELEASE_REPO = 'release'
@@ -73,6 +73,24 @@ pipeline {
             }
         }
 
-        
+        stage("UploadArtifact"){
+            steps{
+                nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
+                  groupId: 'QA',
+                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                  repository: "${RELEASE_REPO}",
+                  credentialsId: "${NEXUS_LOGIN}",
+                  artifacts: [
+                    [artifactId: 'Auto-CI-webapp',
+                     classifier: '',
+                     file: 'target/Auto-CI-v2.war',
+                     type: 'war']
+                  ]
+                )
+            }
+        }
     }
 }
